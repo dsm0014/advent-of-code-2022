@@ -39,6 +39,14 @@ class Hand(Enum):
 #    2 win rock vs scissors
 #    -1 loss rock vs paper
 #    -2 loss rock vs scissors
+def scoreHands(i, you):
+    ans = 0
+    res = i.value["score"] - you.value["score"]
+    if res == -2 or 0 < res < 2:
+        ans += 6
+    elif res == 0:
+        ans += 3
+    return ans + i.value["score"]
 
 def solve1(file) -> int:
     """
@@ -47,12 +55,7 @@ def solve1(file) -> int:
     ans = 0
     for line in file.readlines():
         you, i = [Hand.fromGuide(j) for j in line.strip().split(" ")]
-        res = i.value["score"] - you.value["score"]
-        if res == -2 or 0 < res < 2:
-            ans += 6
-        elif res == 0:
-            ans += 3
-        ans += i.value["score"]
+        ans += scoreHands(i, you)
     return ans
 
 
@@ -70,13 +73,11 @@ def solve2(file) -> int:
             i = Hand.losesAgainst(you)
         else:
             i = you
-        res = i.value["score"] - you.value["score"]
-        if res == -2 or 0 < res < 2:
-            ans += 6
-        elif res == 0:
-            ans += 3
-        ans += i.value["score"]
+        ans += scoreHands(i, you)
+
     return ans
+
+
 
 
 if __name__ == '__main__':
