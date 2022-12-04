@@ -1,5 +1,5 @@
 from enum import Enum
-
+from typing import List
 
 class Hand(Enum):
     ROCK = {"guide": ["A", "X"], "score": 1}
@@ -48,24 +48,24 @@ def scoreHands(i, you):
         ans += 3
     return ans + i.value["score"]
 
-def solve1(file) -> int:
+def solve1(lines: List[str]) -> int:
     """
     tally Rock Paper Scissors score by following the guide
     """
     ans = 0
-    for line in file.readlines():
+    for line in lines:
         you, i = [Hand.fromGuide(j) for j in line.strip().split(" ")]
         ans += scoreHands(i, you)
     return ans
 
 
-def solve2(file) -> int:
+def solve2(lines: List[str]) -> int:
     """
     tally Rock Paper Scissors score by producing compliments to the opponent
     """
     ans = 0
-    for line in file.readlines():
-        you, i = line.strip().split(" ")
+    for line in lines:
+        you, i = line.split(" ")
         you = Hand.fromGuide(you)
         if i == "Z":
             i = Hand.winsAgainst(you)
@@ -79,10 +79,11 @@ def solve2(file) -> int:
 
 
 
-
 if __name__ == '__main__':
+    lines = []
     with open('data.txt', 'r') as f:
-        print(solve1(f))
+        lines = [line.strip() for line in f.readlines()]
+    print(solve1(lines))
+    print(solve2(lines))
 
-    with open('data.txt', 'r') as f:
-        print(solve2(f))
+

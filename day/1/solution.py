@@ -1,10 +1,12 @@
-def solve1(file) -> int:
+from typing import List
+
+def solve1(lines: List[str]) -> int:
     """
     Total calories in the food carried by elf with most food
     """
     ans = []
     tmp = 0
-    for line in file.readlines():
+    for line in lines:
         if line != '\n':
             tmp += int(line)
             continue
@@ -14,13 +16,13 @@ def solve1(file) -> int:
     return max(ans)
 
 
-def solve2(file) -> int:
+def solve2(lines: List[str]) -> int:
     """
     Total calories in the food carried by TOP THREE elves with most food
     """
     ans = []
     tmp = 0
-    for line in file.readlines():
+    for line in lines:
         if line != '\n':
             tmp += int(line)
             continue
@@ -33,8 +35,8 @@ def solve2(file) -> int:
 
 
 if __name__ == '__main__':
+    lines = []
     with open('data.txt', 'r') as f:
-        print(solve1(f))
-
-    with open('data.txt', 'r') as f:
-        print(solve2(f))
+        lines = [line for line in f.readlines()]
+    print(solve1(lines))
+    print(solve2(lines))
