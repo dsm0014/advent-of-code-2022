@@ -1,6 +1,7 @@
 from enum import Enum
 from typing import List
 
+
 class Hand(Enum):
     ROCK = {"guide": ["A", "X"], "score": 1}
     PAPER = {"guide": ["B", "Y"], "score": 2}
@@ -78,12 +79,10 @@ def solve2(lines: List[str]) -> int:
     return ans
 
 
-
 if __name__ == '__main__':
-    lines = []
     with open('data.txt', 'r') as f:
-        lines = [line.strip() for line in f.readlines()]
-    print(solve1(lines))
-    print(solve2(lines))
+        linez = [line.strip() for line in f.readlines()]
+    print(solve1(linez))
+    print(solve2(linez))
 
 

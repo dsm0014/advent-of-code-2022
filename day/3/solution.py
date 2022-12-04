@@ -30,8 +30,7 @@ def solve2(lines: List[str]) -> int:
 
 
 if __name__ == '__main__':
-    lines = []
     with open('data.txt', 'r') as f:
-        lines = [line for line in f.readlines()]
-    print(solve1(lines))
-    print(solve2(lines))
+        linez = [line for line in f.readlines()]
+    print(solve1(linez))
+    print(solve2(linez))
